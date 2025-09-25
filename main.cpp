@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <string>
 #include <iostream>
+#include <stdlib.h>
 /*
 
 ERROR MESSAGES:
@@ -26,7 +27,7 @@ int main(int argc, char* argv[]){
         std::cout << "Aplication requires the path of the file (example: .\\output.exe binary.bin)" << std::endl;
         return -1;
     }
-
+    system("cls");
     while (isOpen==true) {
         std::cout << "======TO-DO: ur mom=======" << std::endl; //MENU
         std::cout << "1) add task :3" << std::endl;
@@ -43,6 +44,7 @@ int main(int argc, char* argv[]){
 
         switch (choice) {
             case 1:
+                system("cls");
                 std::cout << "Task description: ";
                 std::cin.ignore();
                 std::getline(std::cin, task.name);
@@ -63,9 +65,11 @@ int main(int argc, char* argv[]){
                 fwrite(&task.isDone, sizeof(bool), 1, data);    
 
                 fclose(data);
+                system("cls");
 
                 break;
             case 2:
+                system("cls");
                 std::cout << "LISTED TASKS" << std::endl;
                 data = fopen(argv[1], "rb");
                 if(data == NULL){
@@ -82,14 +86,17 @@ int main(int argc, char* argv[]){
                               << "Weight: " << task.weight <<std::endl
                               << "Done: " << (task.isDone ? "Yes" : "No") << std::endl;
                 }
-
                 fclose(data);
+                std::cout << "\nPress Enter to continue...";
+                std::cin.ignore();
+                std::cin.get();
+                system("cls");
                 break;
             default:
                 isOpen = false;
                 break;
         }
     }
-
+    system("cls");
     return 0;
 }
